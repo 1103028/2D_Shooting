@@ -29,6 +29,8 @@ public:
 	int				m_maxFps = 60;				// 最大FPS
 
 
+	int Test = 0;
+
 private:
 
 	// アプリケーション初期化
