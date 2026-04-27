@@ -3,10 +3,13 @@
 
 void c_Player::Init()
 {
-	//m_tex.Load();
+	m_tex.Load("Texture/Ships/ship_0001.png");
 
 	m_pos = { 0,-300 };
 	m_move = { 5,5 };
+	m_scaleX = 2.0f;
+	m_scaleY = 2.0f;
+	m_angle = 0;
 	m_bulletCount = 10;
 
 	for (auto& b : mp_bullet)
@@ -64,12 +67,14 @@ void c_Player::Draw()
 	}
 
 	//プレイヤー
-	Math::Rectangle rect = { 0,0,0,0 };
-	Math::Color color = { 0,0,0,1.0f };
+	Math::Rectangle rect = { 0,0,32,32 };
+	Math::Color color = { 1,1,1,1.0f };
 
 	//仮
-	SHADER.m_spriteShader.DrawBox(m_pos.x, m_pos.y, 5, 5, &color);
+	//SHADER.m_spriteShader.DrawBox(m_pos.x, m_pos.y, 5, 5, &color);
 
-	//SHADER.m_spriteShader.SetMatrix(m_mat);
-	// 	//SHADER.m_spriteShader.DrawTex(&m_tex,0,0, &rect, &color);
+	SHADER.m_spriteShader.SetMatrix(m_mat);
+	SHADER.m_spriteShader.DrawTex(&m_tex,0,0, &rect, &color);
+	//リセット
+	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }

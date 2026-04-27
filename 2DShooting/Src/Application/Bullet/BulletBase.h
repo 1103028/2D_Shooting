@@ -4,7 +4,7 @@ class c_BulletBase
 {
 public:
     c_BulletBase() {};
-    virtual ~c_BulletBase() {};
+    virtual ~c_BulletBase() { Release(); };
 
     virtual void Init();
     virtual void Update();

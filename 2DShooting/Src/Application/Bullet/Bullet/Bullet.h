@@ -12,8 +12,5 @@ public:
 	void Release();
 protected:
 
-	Math::Vector2 m_pos;
-	Math::Vector2 m_move;
-
 	bool m_bulletFlg;
 };

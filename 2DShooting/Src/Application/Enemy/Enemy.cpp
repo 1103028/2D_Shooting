@@ -3,25 +3,17 @@
 
 void c_Enemy::Init()
 {
-	//m_tex.Load();
+	m_tex.Load("Texture/Ships/ship_0018.png");
 
 	//敵
-	for (int i = 0; i < m_num; i++)
-	{
-		m_pos[i].x = rand() % 1280 - 640;
-		//m_pos[i].x = 0;
-		m_pos[i].y = 350;
-		m_moveY = 5;
-		m_bulletCount[i] = 10;
-		m_enemyFlg[i] = true;
-	}
-
-	//弾
-	for (auto& b : mp_bullet)
-	{
-		delete b;
-	}
-	mp_bullet.clear();
+	m_pos.x = rand() % 1280 - 640;
+	m_pos.y = 350;
+	m_scaleX = 1.0f;
+	m_scaleY = 1.0f;
+	m_move = { 0,5 };
+	m_angle = 180;
+	m_bulletCount = 10;
+	m_alive = true;
 }
 
 void c_Enemy::Update()
@@ -32,41 +24,45 @@ void c_Enemy::Update()
 		b->Update();
 	}
 
-	for (int i = 0; i < m_num; i++)
+	if (!m_alive)return;
+
+	// クールタイム
+	if (m_bulletCount > 0)
 	{
-		if (!m_enemyFlg[i]) continue;
-
-		// クールタイム
-		if (m_bulletCount[i] > 0)
-		{
-			m_bulletCount[i]--;
-		}
-
-		// 発射
-		if (m_bulletCount[i] <= 0)
-		{
-			mp_bullet.push_back(new c_Bullet(m_pos[i], { 0,-10 }));
-			m_bulletCount[i] = 10;
-		}
-
-		// 移動
-		m_pos[i].y -= m_moveY;
-
-
-		//一番下に行ったら
-		if (m_pos[i].y < -360)
-		{
-			m_enemyFlg[i] = false;
-		}
-
-		//敵 行列
-		Math::Matrix S, R, T;
-		S = Math::Matrix::CreateScale(m_scaleX, m_scaleY, 1);
-		R = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_angle));
-		T = Math::Matrix::CreateTranslation(m_pos[i].x, m_pos[i].y, 0);
-		m_mat = S * R * T;
+		m_bulletCount--;
 	}
+	// 発射
+	if (m_bulletCount <= 0)
+	{
+		mp_bullet.push_back(new c_Bullet(m_pos, { 0,-10 }));
+		m_bulletCount = 20;
+	}
+
+	// 移動
+	m_pos.y -= m_move.y;
+
+
+	//一番下に行ったら
+	if (m_pos.y < -360)
+	{
+		m_alive = false;
+		//確率で復活
+		if (rand() % 100 < 20)
+		{
+			m_alive = true;
+			m_pos.x = rand() % 1280 - 640;
+			m_pos.y = 350;
+		}
+	}
+
+	//敵 行列
+	Math::Matrix S, R, T;
+	S = Math::Matrix::CreateScale(m_scaleX, m_scaleY, 1);
+	R = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_angle));
+	T = Math::Matrix::CreateTranslation(m_pos.x, m_pos.y, 0);
+	m_mat = S * R * T;
 }
+
 
 void c_Enemy::Draw()
 {
@@ -76,16 +72,24 @@ void c_Enemy::Draw()
 		b->Draw();
 	}
 
-	for (int i = 0; i < m_num; i++)
+	//敵
+	Math::Rectangle rect = { 0,0,32,32 };
+	Math::Color color = { 1,1,1,1.0f };
+
+	//仮
+	//SHADER.m_spriteShader.DrawCircle(m_pos[i].x, m_pos[i].y, 5, &color);
+
+	SHADER.m_spriteShader.SetMatrix(m_mat);
+	SHADER.m_spriteShader.DrawTex(&m_tex, 0, 0, &rect, &color);
+	//リセット
+	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
+}
+void c_Enemy::Release()
+{
+	//弾
+	for (auto& b : mp_bullet)
 	{
-		//敵
-		Math::Rectangle rect = { 0,0,0,0 };
-		Math::Color color = { 0,0,0,1.0f };
-
-		//仮
-		SHADER.m_spriteShader.DrawCircle(m_pos[i].x, m_pos[i].y, 5, &color);
-
-		//SHADER.m_spriteShader.SetMatrix(m_mat);
-		//SHADER.m_spriteShader.DrawTex(&m_tex,0,0, &rect, &color);
+		delete b;
 	}
+	mp_bullet.clear();
 }

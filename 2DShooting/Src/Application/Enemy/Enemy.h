@@ -1,6 +1,8 @@
 #pragma once
+#include"../Enemy/EnemyBase.h"
+
 class c_Bullet;
-class c_Enemy
+class c_Enemy : public c_EnemyBase
 {
 public:
 	c_Enemy() {}
@@ -13,15 +15,10 @@ public:
 
 private:
 
+	//可変長配列
 	std::vector<c_Bullet*> mp_bullet;
 
-	//敵の数
-	static const int m_num = 10;
-
-	float m_bulletCount[m_num];//弾の数
-
-	//座標
-	Math::Vector2 m_pos[m_num];
+	float m_bulletCount;//弾の数
 
 	//サイズ
 	float m_scaleX;
@@ -29,12 +26,6 @@ private:
 
 	//回転
 	float m_angle;
-
-	//下方向の加速度
-	float m_moveY;
-
-	//生きているか？
-	bool m_enemyFlg[m_num];
 
 	//行列
 	Math::Matrix m_mat;

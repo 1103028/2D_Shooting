@@ -5,15 +5,24 @@
 
 void Scene::Draw2D()
 {
-
 	c_player->Draw();
-	c_enemy->Draw();
+	
+//“G•`‰æ
+	for (auto e : mp_enemy)
+	{
+		e->Draw();
+	}
 }
 
 void Scene::Update()
 {
 	c_player->Update();
-	c_enemy->Update();
+
+	//“GXV
+	for (auto e : mp_enemy)
+	{
+		e->Update();
+	}
 }
 
 void Scene::Init()
@@ -23,14 +32,24 @@ void Scene::Init()
 
 	c_player = new c_Player();
 	c_player->Init();
-	c_enemy = new c_Enemy();
-	c_enemy->Init();
 
+	for (int i = 0; i < 10; i++)
+	{
+		c_Enemy* e = new c_Enemy;
+		e->Init();
+		mp_enemy.push_back(e);
+	}
 }
 
 
 void Scene::Release()
 {
+
+	for(auto e :mp_enemy)
+	{
+		delete e;
+	}
+	mp_enemy.clear();
 }
 
 void Scene::ImGuiUpdate()

@@ -153,14 +153,17 @@
     <ClInclude Include="Src\Application\Bullet\BulletBase.h">
       <Filter>Src\Application\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Player\Player.h">
+      <Filter>Src\Application\Player</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Application\Bullet\Bullet\Bullet.h">
-      <Filter>Src\Application\Bullet</Filter>
+      <Filter>Src\Application\Bullet\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Enemy\EnemyBase.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\Enemy\Enemy.h">
       <Filter>Src\Application\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\Player\Player.h">
-      <Filter>Src\Application\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -233,11 +236,14 @@
     <ClCompile Include="Src\Application\Bullet\Bullet\Bullet.cpp">
       <Filter>Src\Application\Bullet\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy\Enemy.cpp">
-      <Filter>Src\Application\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Player\Player.cpp">
       <Filter>Src\Application\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Enemy\EnemyBase.cpp">
+      <Filter>Src\Application\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Enemy\Enemy.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

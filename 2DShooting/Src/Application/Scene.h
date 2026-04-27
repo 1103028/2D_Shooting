@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class c_Player;
 class c_Enemy;
@@ -6,7 +7,7 @@ class Scene
 {
 private:
 
-	c_Enemy* c_enemy;
+	std::vector<c_Enemy*>mp_enemy;
 	c_Player* c_player;
 
 public:
