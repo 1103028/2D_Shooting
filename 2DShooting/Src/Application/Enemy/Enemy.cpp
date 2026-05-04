@@ -12,19 +12,35 @@ void c_Enemy::Init()
 	m_scaleY = 1.0f;
 	m_move = { 0,5 };
 	m_angle = 180;
-	m_bulletCount = 10;
-	m_alive = true;
+	m_bulletCount = 40;
+	m_aliveFlg = true;
 }
 
 void c_Enemy::Update()
 {
+	if (!m_aliveFlg)return;
+
 	// 弾更新
 	for (auto& b : mp_bullet)
 	{
 		b->Update();
 	}
 
-	if (!m_alive)return;
+	//削除
+	{
+		mp_bullet.erase(
+			std::remove_if(mp_bullet.begin(), mp_bullet.end(),
+				[](c_Bullet* b)
+				{
+					if (!b->GetAliveFlg())
+					{
+						delete b;
+						return true;
+					}
+					return false;
+				}),
+			mp_bullet.end());
+	}
 
 	// クールタイム
 	if (m_bulletCount > 0)
@@ -35,7 +51,7 @@ void c_Enemy::Update()
 	if (m_bulletCount <= 0)
 	{
 		mp_bullet.push_back(new c_Bullet(m_pos, { 0,-10 }));
-		m_bulletCount = 20;
+		m_bulletCount = 40;
 	}
 
 	// 移動
@@ -45,11 +61,11 @@ void c_Enemy::Update()
 	//一番下に行ったら
 	if (m_pos.y < -360)
 	{
-		m_alive = false;
+		m_aliveFlg = false;
 		//確率で復活
-		if (rand() % 100 < 20)
+		if (rand() % 100 < 60)
 		{
-			m_alive = true;
+			m_aliveFlg = true;
 			m_pos.x = rand() % 1280 - 640;
 			m_pos.y = 350;
 		}
@@ -66,6 +82,8 @@ void c_Enemy::Update()
 
 void c_Enemy::Draw()
 {
+	if (!m_aliveFlg)return;
+
 	//弾
 	for (auto& b : mp_bullet)
 	{
@@ -92,4 +110,9 @@ void c_Enemy::Release()
 		delete b;
 	}
 	mp_bullet.clear();
+}
+
+void c_Enemy::OnHit()
+{
+	m_aliveFlg=false;
 }

@@ -55,6 +55,30 @@
     <Filter Include="Src\Application\Bullet\Bullet">
       <UniqueIdentifier>{30707f6a-68a0-4b11-b287-7e2a9866c92f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene">
+      <UniqueIdentifier>{a9bf38a4-1dc5-43fa-b292-27ac87aa05b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\TitleScene">
+      <UniqueIdentifier>{3b348ec7-2957-46b4-8140-7adc9e262107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\BaseScene">
+      <UniqueIdentifier>{c6cc4f7f-ddd3-4bb4-b600-74aff8fc2822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameScene">
+      <UniqueIdentifier>{3ba9ba17-340d-42e3-a108-f544f36d7fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\ScoreScene">
+      <UniqueIdentifier>{8e3984c3-6b8e-447d-a5cf-dc609fd72282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Bullet\DelayBullet">
+      <UniqueIdentifier>{abfecdfd-889d-4b3c-9e1c-3e7245491e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Bullet\HomingBullet">
+      <UniqueIdentifier>{2ece2be5-78ac-4141-9300-80ba3cee9d7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Manager">
+      <UniqueIdentifier>{44675412-ed93-4aa9-8e54-d13295a8446d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -165,6 +189,30 @@
     <ClInclude Include="Src\Application\Enemy\Enemy.h">
       <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\SceneManager.h">
+      <Filter>Src\Application\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\TitleScene\TitleScene.h">
+      <Filter>Src\Application\Scene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\GameScene.h">
+      <Filter>Src\Application\Scene\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\BaseScene\BaseScene.h">
+      <Filter>Src\Application\Scene\BaseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\ScoreScene\ScoreScene.h">
+      <Filter>Src\Application\Scene\ScoreScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\DelayBullet\DelayBullet.h">
+      <Filter>Src\Application\Bullet\DelayBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\HomingBullet\HomingBullet.h">
+      <Filter>Src\Application\Bullet\HomingBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Manager\Manager.h">
+      <Filter>Src\Application\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -244,6 +292,30 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Enemy\Enemy.cpp">
       <Filter>Src\Application\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\SceneManager.cpp">
+      <Filter>Src\Application\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\TitleScene\TitleScene.cpp">
+      <Filter>Src\Application\Scene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\GameScene.cpp">
+      <Filter>Src\Application\Scene\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\BaseScene\BaseScene.cpp">
+      <Filter>Src\Application\Scene\BaseScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\ScoreScene\ScoreScene.cpp">
+      <Filter>Src\Application\Scene\ScoreScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\DelayBullet\DelayBullet.cpp">
+      <Filter>Src\Application\Bullet\DelayBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\HomingBullet\HomingBullet.cpp">
+      <Filter>Src\Application\Bullet\HomingBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Manager\Manager.cpp">
+      <Filter>Src\Application\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

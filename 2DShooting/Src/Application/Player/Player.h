@@ -1,4 +1,5 @@
-#pragma
+#pragma once
+
 class c_Bullet;
 class c_Player
 {
@@ -10,6 +11,11 @@ public:
 	void Update();
 	void Draw();
 	void Release();
+
+	Math::Vector2 GetPos() { return m_pos; };
+	void SetAlive(bool flg) { m_aliveFlg = flg; }
+
+	std::vector<c_Bullet*>& GetBulletList() { return mp_bullet; }
 
 private:
 
@@ -35,7 +41,7 @@ private:
 	Math::Vector2 m_move;
 
 	//ê∂Ç´ÇƒÇ¢ÇÈÇ©ÅH
-	bool m_playerFlg;
+	bool m_aliveFlg;
 
 	//çsóÒ
 	Math::Matrix m_mat;

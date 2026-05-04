@@ -10,7 +10,8 @@ void c_Player::Init()
 	m_scaleX = 2.0f;
 	m_scaleY = 2.0f;
 	m_angle = 0;
-	m_bulletCount = 10;
+	m_bulletCount = 20;
+	m_aliveFlg = true;
 
 	for (auto& b : mp_bullet)
 	{
@@ -21,15 +22,33 @@ void c_Player::Init()
 
 void c_Player::Update()
 {
+	if (!m_aliveFlg)return;
+
 	for (auto& b : mp_bullet)
 	{
 		b->Update();
 	}
 
-	if (GetAsyncKeyState('W') & 0x8000)m_pos.y += m_move.y;
-	if (GetAsyncKeyState('S') & 0x8000)m_pos.y -= m_move.y;
-	if (GetAsyncKeyState('A') & 0x8000)m_pos.x -= m_move.x;
-	if (GetAsyncKeyState('D') & 0x8000)m_pos.x += m_move.x;
+	//削除
+	{
+		mp_bullet.erase(
+			std::remove_if(mp_bullet.begin(), mp_bullet.end(),
+				[](c_Bullet* b)
+				{
+					if (!b->GetAliveFlg())
+					{
+						delete b;
+						return true;
+					}
+					return false;
+				}),
+			mp_bullet.end());
+	}
+
+	if (GetAsyncKeyState(VK_UP) & 0x8000)m_pos.y += m_move.y;
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000)m_pos.y -= m_move.y;
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000)m_pos.x -= m_move.x;
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)m_pos.x += m_move.x;
 
 	//0より大きければ引いていく
 	if (m_bulletCount > 0)
@@ -37,14 +56,14 @@ void c_Player::Update()
 		m_bulletCount--;
 	}
 	//エンターキーで弾を打つ
-	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
 		//0より小さければ10にする
 		if (m_bulletCount <= 0)
 		{
 			mp_bullet.push_back(new c_Bullet(m_pos, { 0,5 }));
 
-			m_bulletCount = 10;
+			m_bulletCount = 20;
 		}
 	}
 
@@ -60,6 +79,8 @@ void c_Player::Update()
 
 void c_Player::Draw()
 {
+	if (!m_aliveFlg)return;
+
 	//弾
 	for (auto& b : mp_bullet)
 	{

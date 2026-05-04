@@ -2,54 +2,65 @@
 #include "Scene.h"
 #include"Enemy/Enemy.h"
 #include"Player/Player.h"
+#include"Scene/SceneManager.h"
 
 void Scene::Draw2D()
 {
-	c_player->Draw();
-	
-//“G•`‰æ
-	for (auto e : mp_enemy)
-	{
-		e->Draw();
-	}
+//	c_player->Draw();
+//	
+////“G•`‰æ
+//	for (auto e : mp_enemy)
+//	{
+//		e->Draw();
+//	}
+
+	//ƒV[ƒ“•`‰æ
+	SceneManager::Instance().Draw();
+
 }
 
 void Scene::Update()
 {
-	c_player->Update();
+//	c_player->Update();
+//
+//	//“GXV
+//	for (auto e : mp_enemy)
+//	{
+//		e->Update();
+//	}
 
-	//“GXV
-	for (auto e : mp_enemy)
-	{
-		e->Update();
-	}
+	//ƒAƒbƒvƒf[ƒg‚Ì‘O‚É‚·‚é
+	SceneManager::Instance().PreUpdate();
+
+	//ƒV[ƒ“
+	SceneManager::Instance().Update();
+
 }
 
 void Scene::Init()
 {
-	srand(time(0));
+	//srand(time(0));
 
 
-	c_player = new c_Player();
-	c_player->Init();
+	//c_player = new c_Player();
+	//c_player->Init();
 
-	for (int i = 0; i < 10; i++)
-	{
-		c_Enemy* e = new c_Enemy;
-		e->Init();
-		mp_enemy.push_back(e);
-	}
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	c_Enemy* e = new c_Enemy;
+	//	e->Init();
+	//	mp_enemy.push_back(e);
+	//}
 }
-
 
 void Scene::Release()
 {
 
-	for(auto e :mp_enemy)
-	{
-		delete e;
-	}
-	mp_enemy.clear();
+	//for(auto e :mp_enemy)
+	//{
+	//	delete e;
+	//}
+	//mp_enemy.clear();
 }
 
 void Scene::ImGuiUpdate()

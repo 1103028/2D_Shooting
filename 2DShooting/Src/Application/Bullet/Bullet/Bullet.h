@@ -7,10 +7,9 @@ public:
 	c_Bullet(const Math::Vector2 pos, const Math::Vector2 move);
 	~c_Bullet() {};
 
-	void Update();
-	void Draw();
-	void Release();
+	void Update()override;
+	void Draw()override;
+	void Release()override;
 protected:
 
-	bool m_bulletFlg;
 };

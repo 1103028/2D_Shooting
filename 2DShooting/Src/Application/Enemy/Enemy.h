@@ -6,13 +6,15 @@ class c_Enemy : public c_EnemyBase
 {
 public:
 	c_Enemy() {}
-	~c_Enemy() { Release(); };
+	~c_Enemy() { Release(); }
 
-	void Init();
-	void Update();
-	void Draw();
-	void Release();
+	void Init()override;
+	void Update()override;
+	void Draw()override;
+	void Release()override;
+	void OnHit() override;
 
+	std::vector<c_Bullet*>& GetBulletList() { return mp_bullet; }
 private:
 
 	//‰Â•Ï’·”z—ñ
