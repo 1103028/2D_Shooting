@@ -7,6 +7,7 @@ public:
 	c_Bullet(const Math::Vector2 pos, const Math::Vector2 move);
 	~c_Bullet() {};
 
+	void Init()override;
 	void Update()override;
 	void Draw()override;
 	void Release()override;

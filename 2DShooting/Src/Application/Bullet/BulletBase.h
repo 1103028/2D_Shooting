@@ -11,7 +11,7 @@ public:
     virtual void Draw();
     virtual void Release();
 
-    Math::Vector2 GetPos() { return m_pos; } const
+    Math::Vector2 GetPos()  const { return m_pos; }
     bool GetAliveFlg() { return m_aliveFlg; }
     void SetAlive(bool flg) { m_aliveFlg = flg; }
 

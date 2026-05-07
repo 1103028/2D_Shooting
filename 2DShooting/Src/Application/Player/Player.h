@@ -1,6 +1,8 @@
 #pragma once
 
+class c_BulletBase;
 class c_Bullet;
+class c_Enemy;
 class c_Player
 {
 public:
@@ -15,11 +17,16 @@ public:
 	Math::Vector2 GetPos() { return m_pos; };
 	void SetAlive(bool flg) { m_aliveFlg = flg; }
 
-	std::vector<c_Bullet*>& GetBulletList() { return mp_bullet; }
+	void ShotHoming( std::vector<c_Enemy*>& enemies);
+	bool IsAlive() const { return m_aliveFlg; }
+	
+	float& GetBulletCount() { return m_bulletCount; }
+
+	std::vector<c_BulletBase*>& GetBulletList() { return mp_bullet; }
 
 private:
 
-	std::vector<c_Bullet*> mp_bullet;
+	std::vector<c_BulletBase*> mp_bullet;
 
 	//‰æ–Ê
 	float m_width = 1280;

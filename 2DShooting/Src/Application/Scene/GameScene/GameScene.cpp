@@ -5,10 +5,11 @@
 #include"../../Player/Player.h"
 #include"../../Manager/Manager.h"
 #include"../../Bullet/Bullet/Bullet.h"
+#include"../../Bullet/HomingBullet/HomingBullet.h"
 
 void GameScene::Init()
 {
-	m_tex.Load("");
+	m_enemyTex.Load("Texture/Ships/ship_0018.png");
 
 	srand(time(0));
 
@@ -20,11 +21,14 @@ void GameScene::Init()
 	for (int i = 0; i < 10; i++)
 	{
 		c_Enemy* e = new c_Enemy;
+		e->SetTexture(&m_enemyTex);
 		e->Init();
+
+		e->SetPlayer(c_player);
+
 		mp_enemy.push_back(e);
 	}
 }
-
 void GameScene::Update()
 {
 	if (GetAsyncKeyState('X') & 0x8000)
@@ -39,6 +43,11 @@ void GameScene::Update()
 	for (auto e : mp_enemy)
 	{
 		e->Update();
+	}
+
+	if (GetAsyncKeyState('A') & 0x8000)
+	{
+		c_player->ShotHoming(mp_enemy);
 	}
 
 	//当たり判定
@@ -61,6 +70,7 @@ void GameScene::DrawSprite()
 
 void GameScene::Release()
 {
+
 	for (auto e : mp_enemy)
 	{
 		delete e;

@@ -1,5 +1,8 @@
 #include"Player.h"
 #include"../Bullet/Bullet/Bullet.h"
+#include "../Bullet/BulletBase.h"
+#include"../Enemy/Enemy.h"
+#include "../Bullet/HomingBullet/HomingBullet.h"
 
 void c_Player::Init()
 {
@@ -33,7 +36,7 @@ void c_Player::Update()
 	{
 		mp_bullet.erase(
 			std::remove_if(mp_bullet.begin(), mp_bullet.end(),
-				[](c_Bullet* b)
+				[](c_BulletBase* b)
 				{
 					if (!b->GetAliveFlg())
 					{
@@ -98,4 +101,34 @@ void c_Player::Draw()
 	SHADER.m_spriteShader.DrawTex(&m_tex,0,0, &rect, &color);
 	//ƒŠƒZƒbƒg
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
+}
+
+void c_Player::ShotHoming( std::vector<c_Enemy*>& enemies)
+{
+	if (!m_aliveFlg) return;
+	if (m_bulletCount > 0) return;
+
+	c_Enemy* target = nullptr;
+	float minDist = FLT_MAX;
+
+	// ˆê”Ô‹ß‚¢“G‚ð’T‚·
+	for (auto e : enemies)
+	{
+		if (!e->GetAliveFlg()) continue;
+
+		float dist = (e->GetPos() - m_pos).Length();
+
+		if (dist < minDist)
+		{
+			minDist = dist;
+			target = e;
+		}
+	}
+
+	// ”­ŽË
+	if (target)
+	{
+		mp_bullet.push_back(new c_HomingBullet(m_pos, target, (std::vector<c_Enemy*>*) & enemies));
+		m_bulletCount = 20;
+	}
 }

@@ -31,6 +31,8 @@ private:
 	std::vector<c_Enemy*>mp_enemy;
 	c_Player* c_player;
 
+	KdTexture m_enemyTex;
+
 	KdTexture m_tex;
 	Math::Matrix m_mat;
 

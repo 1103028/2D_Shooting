@@ -3,23 +3,22 @@
 
 void c_Enemy::Init()
 {
-	m_tex.Load("Texture/Ships/ship_0018.png");
 
 	//敵
 	m_pos.x = rand() % 1280 - 640;
 	m_pos.y = 350;
 	m_scaleX = 1.0f;
 	m_scaleY = 1.0f;
-	m_move = { 0,5 };
+	m_speed = rand() % 5 + 2;
+	m_move = { 0,5};
 	m_angle = 180;
 	m_bulletCount = 40;
+	m_waitTime = rand() % 180 + 60;
 	m_aliveFlg = true;
 }
 
 void c_Enemy::Update()
 {
-	if (!m_aliveFlg)return;
-
 	// 弾更新
 	for (auto& b : mp_bullet)
 	{
@@ -42,6 +41,20 @@ void c_Enemy::Update()
 			mp_bullet.end());
 	}
 
+	//一番下に行ったら
+	if (m_pos.y < -360)
+	{
+		m_aliveFlg = false;
+		//確率で復活
+		if (rand() % 100 < 2)
+		{
+			Init();
+		}
+	}
+
+
+	if (!m_aliveFlg)return;
+
 	// クールタイム
 	if (m_bulletCount > 0)
 	{
@@ -55,22 +68,26 @@ void c_Enemy::Update()
 	}
 
 	// 移動
-	m_pos.y -= m_move.y;
-
-
-	//一番下に行ったら
-	if (m_pos.y < -360)
+	if (m_waitTime > 0)
 	{
-		m_aliveFlg = false;
-		//確率で復活
-		if (rand() % 100 < 60)
+		m_waitTime--;
+	}
+	else
+	{
+		// 落下開始
+		m_pos.y -= m_speed;
+	}
+
+	if (!m_aliveFlg)
+	{
+		if (rand() % 100 < 2)
 		{
 			m_aliveFlg = true;
+
 			m_pos.x = rand() % 1280 - 640;
 			m_pos.y = 350;
 		}
 	}
-
 	//敵 行列
 	Math::Matrix S, R, T;
 	S = Math::Matrix::CreateScale(m_scaleX, m_scaleY, 1);
@@ -94,11 +111,8 @@ void c_Enemy::Draw()
 	Math::Rectangle rect = { 0,0,32,32 };
 	Math::Color color = { 1,1,1,1.0f };
 
-	//仮
-	//SHADER.m_spriteShader.DrawCircle(m_pos[i].x, m_pos[i].y, 5, &color);
-
 	SHADER.m_spriteShader.SetMatrix(m_mat);
-	SHADER.m_spriteShader.DrawTex(&m_tex, 0, 0, &rect, &color);
+	SHADER.m_spriteShader.DrawTex(m_tex, 0, 0, &rect, &color);
 	//リセット
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }
@@ -114,5 +128,5 @@ void c_Enemy::Release()
 
 void c_Enemy::OnHit()
 {
-	m_aliveFlg=false;
+	m_aliveFlg = false;
 }

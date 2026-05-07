@@ -2,6 +2,7 @@
 #include"../Enemy/EnemyBase.h"
 
 class c_Bullet;
+class c_Player;
 class c_Enemy : public c_EnemyBase
 {
 public:
@@ -14,8 +15,12 @@ public:
 	void Release()override;
 	void OnHit() override;
 
+	void SetPlayer(c_Player* p) { m_player = p; }
+
 	std::vector<c_Bullet*>& GetBulletList() { return mp_bullet; }
 private:
+
+	c_Player* m_player = nullptr;
 
 	//可変長配列
 	std::vector<c_Bullet*> mp_bullet;
@@ -29,8 +34,11 @@ private:
 	//回転
 	float m_angle;
 
-	//行列
-	Math::Matrix m_mat;
-	KdTexture m_tex;
+	//スピード
+	float m_speed;
+
+	//時間経過
+	int m_waitTime;
+
 
 };
