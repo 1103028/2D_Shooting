@@ -31,6 +31,38 @@ void GameScene::Init()
 }
 void GameScene::Update()
 {
+	//復活
+	if (mp_enemy.size() < 10)
+	{
+		if (rand() % 100 < 2)
+		{
+			c_Enemy* e = new c_Enemy;
+			e->SetTexture(&m_enemyTex);
+			e->Init();
+
+			e->SetPlayer(c_player);
+
+			mp_enemy.push_back(e);
+		}
+	}
+
+	//消す
+	for (auto& it = mp_enemy.begin(); it != mp_enemy.end();)
+	{
+		if ((*it)->IsDead())
+		{
+			delete* it;
+
+			it = mp_enemy.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+
+
 	if (GetAsyncKeyState('X') & 0x8000)
 	{
 		SceneManager::Instance().SetNextScene(SceneManager::SceneType::Score);
@@ -92,7 +124,6 @@ void GameScene::EnemyHit()
 			if (Manager::CircleHit(b->GetPos(), 10, e->GetPos(), 20))
 			{
 				e->OnHit();
-				e->SetAlive(false);
 
 				b->SetAlive(false);
 				break; // 1発1ヒット

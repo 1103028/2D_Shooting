@@ -13,11 +13,11 @@ public:
 	void Update()override;
 	void Draw()override;
 	void Release()override;
-	void OnHit() override;
 
 	void SetPlayer(c_Player* p) { m_player = p; }
 
 	std::vector<c_Bullet*>& GetBulletList() { return mp_bullet; }
+
 private:
 
 	c_Player* m_player = nullptr;

@@ -3,7 +3,6 @@
 
 void c_Enemy::Init()
 {
-
 	//ìG
 	m_pos.x = rand() % 1280 - 640;
 	m_pos.y = 350;
@@ -15,6 +14,7 @@ void c_Enemy::Init()
 	m_bulletCount = 40;
 	m_waitTime = rand() % 180 + 60;
 	m_aliveFlg = true;
+	m_hp = 5;
 }
 
 void c_Enemy::Update()
@@ -44,12 +44,8 @@ void c_Enemy::Update()
 	//àÍî‘â∫Ç…çsÇ¡ÇΩÇÁ
 	if (m_pos.y < -360)
 	{
+		m_hp = 0;
 		m_aliveFlg = false;
-		//ämó¶Ç≈ïúäà
-		if (rand() % 100 < 2)
-		{
-			Init();
-		}
 	}
 
 
@@ -124,9 +120,4 @@ void c_Enemy::Release()
 		delete b;
 	}
 	mp_bullet.clear();
-}
-
-void c_Enemy::OnHit()
-{
-	m_aliveFlg = false;
 }

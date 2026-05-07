@@ -64,7 +64,7 @@ void c_Player::Update()
 		//0ÇÊÇËè¨Ç≥ÇØÇÍÇŒ10Ç…Ç∑ÇÈ
 		if (m_bulletCount <= 0)
 		{
-			mp_bullet.push_back(new c_Bullet(m_pos, { 0,5 }));
+			mp_bullet.push_back(new c_Bullet(m_pos, { 0,8 }));
 
 			m_bulletCount = 20;
 		}
