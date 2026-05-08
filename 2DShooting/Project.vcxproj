@@ -161,8 +161,9 @@
     <ClInclude Include="..\Library\tinygltf\tiny_gltf.h" />
     <ClInclude Include="Src\Application\Bullet\BulletBase.h" />
     <ClInclude Include="Src\Application\Bullet\Bullet\Bullet.h" />
-    <ClInclude Include="Src\Application\Bullet\DelayBullet\DelayBullet.h" />
     <ClInclude Include="Src\Application\Bullet\HomingBullet\HomingBullet.h" />
+    <ClInclude Include="Src\Application\Bullet\SpreadBullet\SpreadBullet.h" />
+    <ClInclude Include="Src\Application\Enemy\Boss\BossEnemy.h" />
     <ClInclude Include="Src\Application\Enemy\Enemy.h" />
     <ClInclude Include="Src\Application\Enemy\EnemyBase.h" />
     <ClInclude Include="Src\Application\Manager\Manager.h" />
@@ -199,8 +200,9 @@
     <ClCompile Include="..\Library\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Src\Application\Bullet\BulletBase.cpp" />
     <ClCompile Include="Src\Application\Bullet\Bullet\Bullet.cpp" />
-    <ClCompile Include="Src\Application\Bullet\DelayBullet\DelayBullet.cpp" />
     <ClCompile Include="Src\Application\Bullet\HomingBullet\HomingBullet.cpp" />
+    <ClCompile Include="Src\Application\Bullet\SpreadBullet\SpreadBullet.cpp" />
+    <ClCompile Include="Src\Application\Enemy\Boss\BossEnemy.cpp" />
     <ClCompile Include="Src\Application\Enemy\Enemy.cpp" />
     <ClCompile Include="Src\Application\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Src\Application\Manager\Manager.cpp" />

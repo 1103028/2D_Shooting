@@ -1,7 +1,7 @@
 #pragma once
 #include"../Enemy/EnemyBase.h"
 
-class c_Bullet;
+class c_BulletBase;
 class c_Player;
 class c_Enemy : public c_EnemyBase
 {
@@ -16,14 +16,14 @@ public:
 
 	void SetPlayer(c_Player* p) { m_player = p; }
 
-	std::vector<c_Bullet*>& GetBulletList() { return mp_bullet; }
+	std::vector<c_BulletBase*>& GetBulletList() { return mp_bullet; }
 
 private:
 
 	c_Player* m_player = nullptr;
 
 	//‰Â•Ï’·”z—ñ
-	std::vector<c_Bullet*> mp_bullet;
+	std::vector<c_BulletBase*> mp_bullet;
 
 	float m_bulletCount;//’e‚Ì”
 

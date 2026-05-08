@@ -2,9 +2,10 @@
 
 #include "../BaseScene/BaseScene.h"
 
+class c_BossEnemy;
 class Manager;
 class c_Player;
-class c_Enemy;
+class c_EnemyBase;
 class GameScene : public BaseScene
 {
 public:
@@ -28,7 +29,8 @@ public:
 
 private:
 	
-	std::vector<c_Enemy*>mp_enemy;
+	std::vector<c_EnemyBase*>mp_enemy;
+	c_BossEnemy* mp_boss;
 	c_Player* c_player;
 
 	KdTexture m_enemyTex;

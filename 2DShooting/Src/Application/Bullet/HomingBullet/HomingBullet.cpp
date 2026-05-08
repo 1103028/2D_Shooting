@@ -1,8 +1,9 @@
 #include "HomingBullet.h"
 #include "../../Enemy/Enemy.h"
+#include"../../Enemy/EnemyBase.h"
 
-c_HomingBullet::c_HomingBullet(const Math::Vector2 pos, c_Enemy* target,
-	std::vector<c_Enemy*>* enemies)
+c_HomingBullet::c_HomingBullet(const Math::Vector2 pos, c_EnemyBase* target,
+	std::vector<c_EnemyBase*>* enemies)
 {
 	m_pos = pos;
 	m_target = target;

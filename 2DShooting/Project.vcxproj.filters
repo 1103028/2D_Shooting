@@ -70,14 +70,17 @@
     <Filter Include="Src\Application\Scene\ScoreScene">
       <UniqueIdentifier>{8e3984c3-6b8e-447d-a5cf-dc609fd72282}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\Bullet\DelayBullet">
-      <UniqueIdentifier>{abfecdfd-889d-4b3c-9e1c-3e7245491e03}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\Bullet\HomingBullet">
       <UniqueIdentifier>{2ece2be5-78ac-4141-9300-80ba3cee9d7e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\Manager">
       <UniqueIdentifier>{44675412-ed93-4aa9-8e54-d13295a8446d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Enemy\Boss">
+      <UniqueIdentifier>{9cc33820-2dbf-406c-8538-8b8db834d1a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Bullet\SpreadBullet">
+      <UniqueIdentifier>{4952f074-5bdf-43ef-8082-6b766376bed7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -204,14 +207,17 @@
     <ClInclude Include="Src\Application\Scene\ScoreScene\ScoreScene.h">
       <Filter>Src\Application\Scene\ScoreScene</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Bullet\DelayBullet\DelayBullet.h">
-      <Filter>Src\Application\Bullet\DelayBullet</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Bullet\HomingBullet\HomingBullet.h">
       <Filter>Src\Application\Bullet\HomingBullet</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\Manager\Manager.h">
       <Filter>Src\Application\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Enemy\Boss\BossEnemy.h">
+      <Filter>Src\Application\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Bullet\SpreadBullet\SpreadBullet.h">
+      <Filter>Src\Application\Bullet\SpreadBullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -308,14 +314,17 @@
     <ClCompile Include="Src\Application\Scene\ScoreScene\ScoreScene.cpp">
       <Filter>Src\Application\Scene\ScoreScene</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Bullet\DelayBullet\DelayBullet.cpp">
-      <Filter>Src\Application\Bullet\DelayBullet</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Bullet\HomingBullet\HomingBullet.cpp">
       <Filter>Src\Application\Bullet\HomingBullet</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\Manager\Manager.cpp">
       <Filter>Src\Application\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Enemy\Boss\BossEnemy.cpp">
+      <Filter>Src\Application\Enemy\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Bullet\SpreadBullet\SpreadBullet.cpp">
+      <Filter>Src\Application\Bullet\SpreadBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -21,5 +21,6 @@ void c_EnemyBase::OnHit()
 	if (m_hp<=0)
 	{
 		m_hp = 0;
+
 	}
 }

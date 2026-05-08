@@ -1,5 +1,6 @@
 #pragma once
 
+class c_Bullet;
 class c_EnemyBase
 {
 public:
@@ -12,8 +13,10 @@ public:
 	virtual void Release();
 	virtual void OnHit();
 
+	virtual std::vector<c_BulletBase*>& GetBulletList() = 0;
+
 	Math::Vector2 GetPos() const { return m_pos; }
-	
+
 	bool GetAliveFlg() { return m_aliveFlg; }
 
 	void SetAlive(bool flg) { m_aliveFlg = flg; }

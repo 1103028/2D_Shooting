@@ -1,17 +1,18 @@
 #include"Enemy.h"
 #include"../Bullet/Bullet/Bullet.h"
+#include"../Bullet/BulletBase.h"
 
 void c_Enemy::Init()
 {
 	//“G
 	m_pos.x = rand() % 1280 - 640;
 	m_pos.y = 350;
-	m_scaleX = 1.0f;
-	m_scaleY = 1.0f;
+	m_scaleX = 2.0f;
+	m_scaleY = 2.0f;
 	m_speed = rand() % 5 + 2;
 	m_move = { 0,5};
 	m_angle = 180;
-	m_bulletCount = 40;
+	m_bulletCount = 60;
 	m_waitTime = rand() % 180 + 60;
 	m_aliveFlg = true;
 	m_hp = 5;
@@ -59,8 +60,8 @@ void c_Enemy::Update()
 	// ”­ŽË
 	if (m_bulletCount <= 0)
 	{
-		mp_bullet.push_back(new c_Bullet(m_pos, { 0,-10 }));
-		m_bulletCount = 40;
+		mp_bullet.push_back(new c_Bullet(m_pos, { 0,-5 }));
+		m_bulletCount = 60;
 	}
 
 	// ˆÚ“®
@@ -74,16 +75,7 @@ void c_Enemy::Update()
 		m_pos.y -= m_speed;
 	}
 
-	if (!m_aliveFlg)
-	{
-		if (rand() % 100 < 2)
-		{
-			m_aliveFlg = true;
 
-			m_pos.x = rand() % 1280 - 640;
-			m_pos.y = 350;
-		}
-	}
 	//“G s—ñ
 	Math::Matrix S, R, T;
 	S = Math::Matrix::CreateScale(m_scaleX, m_scaleY, 1);

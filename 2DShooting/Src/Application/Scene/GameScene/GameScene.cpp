@@ -2,14 +2,17 @@
 
 #include"../SceneManager.h"
 #include"../../Enemy/Enemy.h"
+#include"../../Enemy/Boss/BossEnemy.h"
 #include"../../Player/Player.h"
 #include"../../Manager/Manager.h"
 #include"../../Bullet/Bullet/Bullet.h"
 #include"../../Bullet/HomingBullet/HomingBullet.h"
+#include "../../Enemy/EnemyBase.h"
 
 void GameScene::Init()
 {
 	m_enemyTex.Load("Texture/Ships/ship_0018.png");
+	m_tex.Load("Texture/Ships/ship_0012.png");
 
 	srand(time(0));
 
@@ -28,6 +31,11 @@ void GameScene::Init()
 
 		mp_enemy.push_back(e);
 	}
+
+	//ボス
+	mp_boss = new c_BossEnemy(); // 1. まず実体を作る
+	mp_boss->SetTexture(&m_tex); // 必要ならテクスチャを渡す
+	mp_boss->Init();
 }
 void GameScene::Update()
 {
@@ -61,8 +69,6 @@ void GameScene::Update()
 		}
 	}
 
-
-
 	if (GetAsyncKeyState('X') & 0x8000)
 	{
 		SceneManager::Instance().SetNextScene(SceneManager::SceneType::Score);
@@ -76,6 +82,8 @@ void GameScene::Update()
 	{
 		e->Update();
 	}
+
+	mp_boss->Update();
 
 	if (GetAsyncKeyState('A') & 0x8000)
 	{
@@ -92,11 +100,13 @@ void GameScene::DrawSprite()
 {
 	c_player->Draw();
 
-	//敵描画
-	for (auto e : mp_enemy)
-	{
-		e->Draw();
-	}
+	////敵描画
+	//for (auto e : mp_enemy)
+	//{
+	//	e->Draw();
+	//}
+
+	mp_boss->Draw();
 
 }
 

@@ -1,8 +1,9 @@
 #include"Player.h"
 #include"../Bullet/Bullet/Bullet.h"
 #include "../Bullet/BulletBase.h"
-#include"../Enemy/Enemy.h"
 #include "../Bullet/HomingBullet/HomingBullet.h"
+#include"../Enemy/EnemyBase.h"
+#include"../Enemy/Enemy.h"
 
 void c_Player::Init()
 {
@@ -64,8 +65,7 @@ void c_Player::Update()
 		//0ÇÊÇËè¨Ç≥ÇØÇÍÇŒ10Ç…Ç∑ÇÈ
 		if (m_bulletCount <= 0)
 		{
-			mp_bullet.push_back(new c_Bullet(m_pos, { 0,8 }));
-
+			mp_bullet.push_back(new c_Bullet(m_pos, { 0,10 }));
 			m_bulletCount = 20;
 		}
 	}
@@ -103,12 +103,12 @@ void c_Player::Draw()
 	SHADER.m_spriteShader.SetMatrix(Math::Matrix::Identity);
 }
 
-void c_Player::ShotHoming( std::vector<c_Enemy*>& enemies)
+void c_Player::ShotHoming( std::vector<c_EnemyBase*>& enemies)
 {
 	if (!m_aliveFlg) return;
 	if (m_bulletCount > 0) return;
 
-	c_Enemy* target = nullptr;
+	c_EnemyBase* target = nullptr;
 	float minDist = FLT_MAX;
 
 	// àÍî‘ãﬂÇ¢ìGÇíTÇ∑
@@ -128,7 +128,7 @@ void c_Player::ShotHoming( std::vector<c_Enemy*>& enemies)
 	// î≠éÀ
 	if (target)
 	{
-		mp_bullet.push_back(new c_HomingBullet(m_pos, target, (std::vector<c_Enemy*>*) & enemies));
+		mp_bullet.push_back(new c_HomingBullet(m_pos, target, (std::vector<c_EnemyBase*>*) & enemies));
 		m_bulletCount = 20;
 	}
 }

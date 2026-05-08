@@ -2,7 +2,7 @@
 
 class c_BulletBase;
 class c_Bullet;
-class c_Enemy;
+class c_EnemyBase;
 class c_Player
 {
 public:
@@ -17,7 +17,7 @@ public:
 	Math::Vector2 GetPos() { return m_pos; };
 	void SetAlive(bool flg) { m_aliveFlg = flg; }
 
-	void ShotHoming( std::vector<c_Enemy*>& enemies);
+	void ShotHoming( std::vector<c_EnemyBase*>& enemies);
 	bool IsAlive() const { return m_aliveFlg; }
 	
 	float& GetBulletCount() { return m_bulletCount; }
